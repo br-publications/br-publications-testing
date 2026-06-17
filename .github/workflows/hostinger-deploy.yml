@@ -1,0 +1,64 @@
+name: Deploy to Hostinger via FTP
+
+on:
+  push:
+    branches:
+      - feature/updating_structure # Triggers on push to the feature branch
+  workflow_dispatch: # Allows you to manually trigger the deployment from GitHub UI
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Use your project's Node version
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9 # Or your specific pnpm version
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build Projects
+        run: pnpm build
+
+      # Next.js standalone mode requires the static and public folders to be copied into it
+      - name: Prepare Next.js Standalone Files
+        run: |
+          cp -r apps/seo/public apps/seo/.next/standalone/apps/seo/public || true
+          cp -r apps/seo/.next/static apps/seo/.next/standalone/apps/seo/.next/static || true
+
+      - name: Stage Deployment Files
+        run: |
+          mkdir deploy_dist
+          mkdir -p deploy_dist/apps/client
+          mkdir -p deploy_dist/apps/seo/.next
+          
+          # Copy Client Build
+          cp -r apps/client/dist deploy_dist/apps/client/
+          
+          # Copy SEO Standalone Build
+          cp -r apps/seo/.next/standalone deploy_dist/apps/seo/.next/
+          
+          # Copy root package files if Hostinger needs them to install deps
+          cp package.json deploy_dist/ || true
+          cp pnpm-workspace.yaml deploy_dist/ || true
+
+      # Upload the built files to Hostinger via FTP
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: deploy_dist/
+          server-dir: /domains/dev.brpublications.com/public_html/
+          timeout: 500000
