@@ -44,7 +44,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     const nameSlug = editor.name ? toBookNameSlug(editor.name) : '';
     const canonical = `https://www.brpublications.com/editor/${editor.id}/${nameSlug}`;
-    const title = `${editor.name} - Editorial Profile`;
+    const title = `${editor.name} - Editorial Profile | BR Publications`;
+    const profileImage = editor.profilePicture || editor.profileImage || null;
+
+    // Keywords: name + affiliation + role
+    const keywords = [
+      editor.name,
+      editor.affiliation,
+      'academic editor',
+      'book editor',
+      'BR Publications',
+      'BR ResNova',
+    ].filter(Boolean).join(', ');
 
     return {
       title: {
@@ -59,17 +70,40 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description,
         type: 'profile',
         url: canonical,
+        ...(profileImage ? { images: [{ url: profileImage }] } : {}),
+      },
+      twitter: {
+        card: profileImage ? 'summary_large_image' : 'summary',
+        title,
+        description,
+        ...(profileImage ? { images: [profileImage] } : {}),
+      },
+      other: {
+        'keywords': keywords,
+        // Google Scholar citation tag for editorial identity
+        'citation_author': editor.name,
+        ...(editor.affiliation ? { 'citation_author_institution': editor.affiliation } : {}),
+        // Dublin Core
+        'dc.creator': editor.name,
+        ...(editor.affiliation ? { 'dc.contributor': editor.affiliation } : {}),
+        'dc.publisher': 'BR Publications',
+        'dc.type': 'Person',
+        'dc.language': 'en',
+        'dc.description': description,
+        'dc.identifier': canonical,
       }
     };
   } catch (error) {
     console.error("Editor metadata resolution failed:", error);
     return {
-      title: { absolute: 'Editor Profile' }
+      title: { absolute: 'Editor Profile | BR Publications' }
     };
   }
 }
 
-export default function Page() {
+export default function Page({ params }: { params: Promise<{ id: string; slug?: string[] }> }) {
+  // JSON-LD Person schema — injected server-side for Google Scholar & Knowledge Graph
+  // We fetch inline here so it's available in SSR without duplicating the API call pattern
   return (
     <Suspense fallback={<div className="suspense-loading">Loading...</div>}>
       <Component />

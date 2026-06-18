@@ -44,6 +44,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const displayTitle = `${book.title}${book.editors && book.editors.length > 0 ? ` by ${book.editors.join(', ')}` : book.author ? ` by ${book.author}` : ''}`;
+  // Include brand suffix — prevents duplicate <title> from root layout default
+  const pageTitle = `${displayTitle} | BR Publications`;
   const editorsStr = book && Array.isArray(book.editors) && book.editors.length > 0
     ? `Editors: ${book.editors.join(', ')}.`
     : book.author ? `By ${book.author}.` : '';
@@ -63,9 +65,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ? `https://www.brpublications.com/bookchapter/${identifier}/${bookSlug}`
     : `https://www.brpublications.com/bookchapter/${identifier}`;
 
+  // Build a clean keyword string — skip DB keywords that look like test/placeholder data
+  const rawKeywords = book.keywords && book.keywords.length > 0 ? book.keywords.join(', ') : '';
+  const looksLikeTestData = rawKeywords.length > 0 && rawKeywords.split(',').every(k => k.trim().length < 8 || /^[a-z]{3,8}$/i.test(k.trim()));
+  const cleanKeywords = (!rawKeywords || looksLikeTestData)
+    ? `${book.title}, ${(book.editors ?? [book.author ?? '']).join(', ')}, ${book.isbn}, book chapter, academic research, BR Publications, BR ResNova`
+    : rawKeywords;
+
+  const editorsList = Array.isArray(book.editors) && book.editors.length > 0 ? book.editors : [];
+  const authorEntry = !editorsList.length && book.author ? [book.author] : [];
+  const publishYear = (book.publishedDate || book.releaseDate || '').split('-')[0] || '';
+
   return {
     title: {
-      absolute: displayTitle
+      absolute: pageTitle
     },
     description: metaDescription,
     alternates: {
@@ -78,21 +91,38 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: canonicalUrlFull,
       images: book.coverImage ? [{ url: book.coverImage }] : [],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: book.title || undefined,
+      description: metaDescription,
+      images: book.coverImage ? [book.coverImage] : [],
+    },
     other: {
-      'keywords': book.keywords && book.keywords.length > 0 ? book.keywords.join(', ') : `${book.title}, ${(book.editors ?? []).join(', ')}, book chapter, ${book.isbn}, BR Publications, academic research`,
+      'keywords': cleanKeywords,
+      // Google Scholar citation tags
       'citation_title': book.title || '',
-      ...(Array.isArray(book.editors) && book.editors.length > 0 ? {
-        'citation_author': book.editors,
-      } : (book.author ? { 'citation_author': [book.author] } : {})),
-      ...((book.publishedDate || book.releaseDate) ? {
-        'citation_publication_date': book.publishedDate || book.releaseDate,
-      } : {}),
+      // citation_editor for edited volumes, citation_author for single-author books
+      ...(editorsList.length > 0 ? { 'citation_editor': editorsList } : {}),
+      ...(authorEntry.length > 0 ? { 'citation_author': authorEntry } : {}),
+      ...(publishYear ? { 'citation_publication_date': publishYear } : {}),
       'citation_isbn': book.isbn || '',
       'citation_publisher': 'BR ResNova Academic Press',
       'citation_language': 'en',
       'citation_abstract_html_url': canonicalUrlFull,
       'citation_fulltext_html_url': canonicalUrlFull,
+      // TOC PDF — uses numeric book ID only (not uid)
+      'citation_pdf_url': `https://api-dev.brpublications.com/api/book-chapter-publishing/${numericId}/extra-pdf/Detailed%20Table%20of%20Contents`,
       ...(book.doi ? { 'citation_doi': book.doi } : {}),
+      // Dublin Core — picked up by DOAJ, EBSCO, and other academic indexers
+      'dc.title': book.title || '',
+      ...(editorsList.length > 0 ? { 'dc.contributor': editorsList } : {}),
+      ...(authorEntry.length > 0 ? { 'dc.creator': authorEntry } : {}),
+      'dc.publisher': 'BR ResNova Academic Press',
+      ...(publishYear ? { 'dc.date': publishYear } : {}),
+      'dc.identifier': book.doi ? [book.isbn, book.doi] : (book.isbn || ''),
+      'dc.type': 'Book',
+      'dc.language': 'en',
+      'dc.description': metaDescription,
     }
   };
 }

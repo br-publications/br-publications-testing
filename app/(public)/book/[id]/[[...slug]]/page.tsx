@@ -49,6 +49,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     }
 
     const title = book.title || '';
+    // Include brand in title — prevents duplicate <title> from root layout default
+    const pageTitle = title ? `${title} | BR Publications` : 'BR Publications';
     let description = 'Detailed information about academic books and research publications from BR Publications.';
     if (book.description) {
       description = book.description.replace(/<[^>]+>/g, '').trim().slice(0, 160);
@@ -65,9 +67,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ? `https://www.brpublications.com/book/${identifier}/${bookSlug}`
       : `https://www.brpublications.com/book/${identifier}`;
 
+    // Detect garbage/test keywords and replace with meaningful auto-generated ones
+    const rawKeywords = book.keywords && book.keywords.length > 0 ? book.keywords.join(', ') : '';
+    const looksLikeTestData = rawKeywords.length > 0 && rawKeywords.split(',').every(k => k.trim().length < 8 || /^[a-z]{3,8}$/i.test(k.trim()));
+    const cleanKeywords = (!rawKeywords || looksLikeTestData)
+      ? `${book.title}, ${book.author ?? ''}, ${book.isbn}, academic book, BR Publications, peer-reviewed`
+      : rawKeywords;
+
+    const publishYear = (book.publishedDate || '').split('-')[0] || '';
+
     return {
       title: {
-        absolute: title
+        absolute: pageTitle
       },
       description,
       alternates: {
@@ -80,11 +91,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         url: canonical,
         images: book.coverImage ? [{ url: book.coverImage }] : [],
       },
+      twitter: {
+        card: 'summary_large_image',
+        title: book.title || undefined,
+        description,
+        images: book.coverImage ? [book.coverImage] : [],
+      },
       other: {
-        'keywords': book.keywords && book.keywords.length > 0 ? book.keywords.join(', ') : `${book.title}, ${book.author ?? ''}, academic book, ${book.isbn}, BR Publications, peer-reviewed`,
+        'keywords': cleanKeywords,
+        // Google Scholar citation tags
         'citation_title': book.title || '',
         ...(authorsList.length > 0 ? { 'citation_author': authorsList } : {}),
-        ...(book.publishedDate ? { 'citation_publication_date': book.publishedDate } : {}),
+        ...(publishYear ? { 'citation_publication_date': publishYear } : {}),
         'citation_isbn': book.isbn || '',
         'citation_publisher': 'BR Publications',
         'citation_language': 'en',
@@ -94,13 +112,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
           'citation_pdf_url': `https://api-dev.brpublications.com/api/books/${book.id}/pdf/${book.pdfUniqueId}`,
         } : {}),
         ...(book.doi ? { 'citation_doi': book.doi } : {}),
+        // Dublin Core — picked up by DOAJ, EBSCO, BASE, and other academic indexers
         'dc.title': book.title || '',
         ...(authorsList.length > 0 ? { 'dc.creator': authorsList } : {}),
         'dc.publisher': 'BR Publications',
-        ...(book.publishedDate ? { 'dc.date': book.publishedDate } : {}),
+        ...(publishYear ? { 'dc.date': publishYear } : {}),
         'dc.identifier': book.doi ? [book.isbn, book.doi] : (book.isbn || ''),
         'dc.type': 'Book',
         'dc.language': 'en',
+        'dc.description': description,
       }
     };
   }
@@ -166,7 +186,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     ? chapter.authorDetails.map(a => a.name).join(', ')
     : chapter.authors || '';
 
-  const title = `${chapter.title} | ${fetchedBook.title}`;
+  // Include brand suffix — prevents duplicate <title> from root layout default
+  const title = `${chapter.title} | ${fetchedBook.title} | BR Publications`;
   const description = chapter.abstract
     ? chapter.abstract.slice(0, 155)
     : `${chapter.title} — a chapter from "${fetchedBook.title}" published by BR Publications.`;
@@ -216,7 +237,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         'citation_firstpage': String(chapter.pages).split('-')[0].trim(),
         'citation_lastpage': String(chapter.pages).split('-')[1].trim(),
       } : (chapter.pages ? { 'citation_firstpage': chapter.pages } : {})),
-      'citation_pdf_url': `https://api-dev.brpublications.com/api/book-chapter-publishing/${numericId}/pdf`,
+      'citation_pdf_url': `https://api-dev.brpublications.com/api/book-chapter-publishing/${numericId}/toc/${Math.max(0, parseInt(cleanChapterNum, 10) - 1)}/pdf`,
       ...(chapter.doi ? { 'citation_doi': chapter.doi } : {}),
     }
   };

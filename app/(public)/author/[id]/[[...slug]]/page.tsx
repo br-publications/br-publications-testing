@@ -44,7 +44,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
     const nameSlug = author.name ? toBookNameSlug(author.name) : '';
     const canonical = `https://www.brpublications.com/author/${author.id}/${nameSlug}`;
-    const title = `${author.name} - Author Profile`;
+    const title = `${author.name} - Author Profile | BR Publications`;
+    const profileImage = author.profilePicture || author.profileImage || null;
+
+    // Keywords: name + affiliation + role
+    const keywords = [
+      author.name,
+      author.affiliation,
+      'academic author',
+      'book author',
+      'BR Publications',
+      'BR ResNova',
+    ].filter(Boolean).join(', ');
 
     return {
       title: {
@@ -59,12 +70,33 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description,
         type: 'profile',
         url: canonical,
+        ...(profileImage ? { images: [{ url: profileImage }] } : {}),
+      },
+      twitter: {
+        card: profileImage ? 'summary_large_image' : 'summary',
+        title,
+        description,
+        ...(profileImage ? { images: [profileImage] } : {}),
+      },
+      other: {
+        'keywords': keywords,
+        // Google Scholar citation tag for author identity
+        'citation_author': author.name,
+        ...(author.affiliation ? { 'citation_author_institution': author.affiliation } : {}),
+        // Dublin Core
+        'dc.creator': author.name,
+        ...(author.affiliation ? { 'dc.contributor': author.affiliation } : {}),
+        'dc.publisher': 'BR Publications',
+        'dc.type': 'Person',
+        'dc.language': 'en',
+        'dc.description': description,
+        'dc.identifier': canonical,
       }
     };
   } catch (error) {
     console.error("Author metadata resolution failed:", error);
     return {
-      title: { absolute: 'Author Profile' }
+      title: { absolute: 'Author Profile | BR Publications' }
     };
   }
 }
