@@ -33,123 +33,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const slug = resolvedParams.slug;
   const isChapter = slug && slug.length > 0 && String(slug[0]).toLowerCase().startsWith('chapter');
 
-  let numericId: number | null = null;
   const isNumeric = /^\d+$/.test(id);
-  if (isNumeric) {
-    numericId = parseInt(id, 10);
-  } else {
-    try {
-      const allBooks = await bookChapterService.getAllBooks();
-      const matchedBook = allBooks.find(b => b.uid && b.uid.toLowerCase() === id.toLowerCase());
-      if (matchedBook) {
-        numericId = matchedBook.id;
-      }
-    } catch (e) {
-      console.error("Metadata resolution: uid mapping failed", e);
-    }
-  }
 
-  if (!numericId) {
-    return {
-      title: { absolute: 'Book Not Found' },
-      robots: 'noindex, follow',
-    };
-  }
-
-  if (isChapter) {
-    const fetchedBook = await bookChapterService.getBookById(numericId);
-    if (!fetchedBook || !fetchedBook.chapters) {
-      return {
-        title: { absolute: 'Chapter Not Found' },
-        robots: 'noindex, follow',
-      };
-    }
-    const chapterId = slug[0];
-    const rawParam = chapterId.toLowerCase().trim();
-    const cleanParam = rawParam.replace(/^chapter[-_ \s]*/, '');
-    const parsedParamInt = parseInt(cleanParam, 10);
-
-    const chapter = fetchedBook.chapters.find(c => {
-      const rawChapNum = String(c.chapterNumber).toLowerCase().trim();
-      const cleanChapNum = rawChapNum.replace(/^chapter[-_ \s]*/, '').replace(/\s+/g, '');
-      const parsedChapInt = parseInt(cleanChapNum, 10);
-      return (
-        rawChapNum === rawParam ||
-        cleanChapNum === cleanParam ||
-        (!isNaN(parsedParamInt) && !isNaN(parsedChapInt) && parsedParamInt === parsedChapInt)
-      );
-    });
-
-    if (!chapter) {
-      return {
-        title: { absolute: 'Chapter Not Found' },
-        robots: 'noindex, follow',
-      };
-    }
-
-    const authorNames = chapter.authorDetails && chapter.authorDetails.length > 0
-      ? chapter.authorDetails.map(a => a.name).join(', ')
-      : chapter.authors || '';
-
-    const title = `${chapter.title} | ${fetchedBook.title}`;
-    const description = chapter.abstract
-      ? chapter.abstract.slice(0, 155)
-      : `${chapter.title} — a chapter from "${fetchedBook.title}" published by BR Publications.`;
-
-    const bookIdentifier = fetchedBook.uid ? fetchedBook.uid.toLowerCase() : fetchedBook.id;
-    const cleanChapterNum = String(chapter.chapterNumber).toLowerCase().trim().replace(/^chapter[-_ \s]*/, '');
-    const chapterSlugSegment = `chapter-${cleanChapterNum}`;
-    const chapterTitleSlug = chapter.title ? toBookNameSlug(chapter.title) : '';
-    const canonical = chapterTitleSlug
-      ? `https://www.brpublications.com/book/${bookIdentifier}/${chapterSlugSegment}/${chapterTitleSlug}`
-      : `https://www.brpublications.com/book/${bookIdentifier}/${chapterSlugSegment}`;
-
-    return {
-      title: {
-        absolute: title
-      },
-      description,
-      alternates: {
-        canonical,
-      },
-      openGraph: {
-        title: chapter.title || undefined,
-        description,
-        type: 'article',
-        url: canonical,
-        images: fetchedBook.coverImage ? [{ url: fetchedBook.coverImage }] : [],
-      },
-      other: {
-        'keywords': `${chapter.title}, ${authorNames}, ${fetchedBook.title}, ${fetchedBook.isbn}, book chapter, academic research, BR Publications`,
-        'citation_title': chapter.title || '',
-        ...(chapter.authorDetails && chapter.authorDetails.length > 0 ? {
-          'citation_author': chapter.authorDetails.map(a => a.name),
-        } : (chapter.authors ? { 'citation_author': [chapter.authors] } : {})),
-        ...((fetchedBook.publishedDate || fetchedBook.releaseDate) ? {
-          'citation_publication_date': fetchedBook.publishedDate || fetchedBook.releaseDate,
-        } : {}),
-        'citation_inbook_title': fetchedBook.title || '',
-        ...(fetchedBook.editors && fetchedBook.editors.length > 0 ? {
-          'citation_editor': fetchedBook.editors,
-        } : {}),
-        'citation_publisher': 'BR Publications',
-        'citation_isbn': fetchedBook.isbn || '',
-        'citation_language': 'en',
-        'citation_abstract_html_url': canonical,
-        'citation_fulltext_html_url': canonical,
-        ...(chapter.pages && String(chapter.pages).includes('-') ? {
-          'citation_firstpage': String(chapter.pages).split('-')[0].trim(),
-          'citation_lastpage': String(chapter.pages).split('-')[1].trim(),
-        } : (chapter.pages ? { 'citation_firstpage': chapter.pages } : {})),
-        'citation_pdf_url': `https://api-dev.brpublications.com/api/book-chapter-publishing/${numericId}/pdf`,
-        ...(chapter.doi ? { 'citation_doi': chapter.doi } : {}),
-      }
-    };
-  } else {
-    const book = await productBooksService.getBookById(numericId);
+  // --- Non-chapter book metadata ---
+  if (!isChapter) {
+    // productBooksService.getBookById accepts both numeric IDs and uid strings
+    // so we can pass the raw `id` directly — no uid scan needed.
+    const book = await productBooksService.getBookById(id);
     if (!book) {
       return {
         title: { absolute: 'Book Not Found' },
+        description: 'Academic Books & Research Publications',
         robots: 'noindex, follow',
       };
     }
@@ -210,6 +104,122 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       }
     };
   }
+
+  // --- Chapter metadata: needs numeric book ID ---
+  let numericId: number | null = null;
+  if (isNumeric) {
+    numericId = parseInt(id, 10);
+  } else {
+    // For chapter paths, resolve uid -> numeric id via bookChapterService
+    try {
+      const allBooks = await bookChapterService.getAllBooks();
+      const matchedBook = allBooks.find(b => b.uid && b.uid.toLowerCase() === id.toLowerCase());
+      if (matchedBook) {
+        numericId = matchedBook.id;
+      }
+    } catch (e) {
+      console.error("Metadata resolution: chapter uid mapping failed", e);
+    }
+  }
+
+  if (!numericId) {
+    return {
+      title: { absolute: 'Chapter Not Found' },
+      description: 'Academic Books & Research Publications',
+      robots: 'noindex, follow',
+    };
+  }
+
+  const fetchedBook = await bookChapterService.getBookById(numericId);
+  if (!fetchedBook || !fetchedBook.chapters) {
+    return {
+      title: { absolute: 'Chapter Not Found' },
+      description: 'Academic Books & Research Publications',
+      robots: 'noindex, follow',
+    };
+  }
+  const chapterId = slug[0];
+  const rawParam = chapterId.toLowerCase().trim();
+  const cleanParam = rawParam.replace(/^chapter[-_ \s]*/, '');
+  const parsedParamInt = parseInt(cleanParam, 10);
+
+  const chapter = fetchedBook.chapters.find(c => {
+    const rawChapNum = String(c.chapterNumber).toLowerCase().trim();
+    const cleanChapNum = rawChapNum.replace(/^chapter[-_ \s]*/, '').replace(/\s+/g, '');
+    const parsedChapInt = parseInt(cleanChapNum, 10);
+    return (
+      rawChapNum === rawParam ||
+      cleanChapNum === cleanParam ||
+      (!isNaN(parsedParamInt) && !isNaN(parsedChapInt) && parsedParamInt === parsedChapInt)
+    );
+  });
+
+  if (!chapter) {
+    return {
+      title: { absolute: 'Chapter Not Found' },
+      description: 'Academic Books & Research Publications',
+      robots: 'noindex, follow',
+    };
+  }
+
+  const authorNames = chapter.authorDetails && chapter.authorDetails.length > 0
+    ? chapter.authorDetails.map(a => a.name).join(', ')
+    : chapter.authors || '';
+
+  const title = `${chapter.title} | ${fetchedBook.title}`;
+  const description = chapter.abstract
+    ? chapter.abstract.slice(0, 155)
+    : `${chapter.title} — a chapter from "${fetchedBook.title}" published by BR Publications.`;
+
+  const bookIdentifier = fetchedBook.uid ? fetchedBook.uid.toLowerCase() : fetchedBook.id;
+  const cleanChapterNum = String(chapter.chapterNumber).toLowerCase().trim().replace(/^chapter[-_ \s]*/, '');
+  const chapterSlugSegment = `chapter-${cleanChapterNum}`;
+  const chapterTitleSlug = chapter.title ? toBookNameSlug(chapter.title) : '';
+  const canonical = chapterTitleSlug
+    ? `https://www.brpublications.com/book/${bookIdentifier}/${chapterSlugSegment}/${chapterTitleSlug}`
+    : `https://www.brpublications.com/book/${bookIdentifier}/${chapterSlugSegment}`;
+
+  return {
+    title: {
+      absolute: title
+    },
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title: chapter.title || undefined,
+      description,
+      type: 'article',
+      url: canonical,
+      images: fetchedBook.coverImage ? [{ url: fetchedBook.coverImage }] : [],
+    },
+    other: {
+      'keywords': `${chapter.title}, ${authorNames}, ${fetchedBook.title}, ${fetchedBook.isbn}, book chapter, academic research, BR Publications`,
+      'citation_title': chapter.title || '',
+      ...(chapter.authorDetails && chapter.authorDetails.length > 0 ? {
+        'citation_author': chapter.authorDetails.map(a => a.name),
+      } : (chapter.authors ? { 'citation_author': [chapter.authors] } : {})),
+      ...((fetchedBook.publishedDate || fetchedBook.releaseDate) ? {
+        'citation_publication_date': fetchedBook.publishedDate || fetchedBook.releaseDate,
+      } : {}),
+      'citation_inbook_title': fetchedBook.title || '',
+      ...(fetchedBook.editors && fetchedBook.editors.length > 0 ? {
+        'citation_editor': fetchedBook.editors,
+      } : {}),
+      'citation_publisher': 'BR Publications',
+      'citation_isbn': fetchedBook.isbn || '',
+      'citation_language': 'en',
+      'citation_abstract_html_url': canonical,
+      'citation_fulltext_html_url': canonical,
+      ...(chapter.pages && String(chapter.pages).includes('-') ? {
+        'citation_firstpage': String(chapter.pages).split('-')[0].trim(),
+        'citation_lastpage': String(chapter.pages).split('-')[1].trim(),
+      } : (chapter.pages ? { 'citation_firstpage': chapter.pages } : {})),
+      'citation_pdf_url': `https://api-dev.brpublications.com/api/book-chapter-publishing/${numericId}/pdf`,
+      ...(chapter.doi ? { 'citation_doi': chapter.doi } : {}),
+    }
+  };
 }
 
 export default async function Page({ params }: PageProps) {
