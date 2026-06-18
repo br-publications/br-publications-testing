@@ -438,14 +438,18 @@ const BookChapterDetail: React.FC = () => {
                                     {editorDetail.name}
                                   </Link>
                                   {editorDetail.affiliation && (
-                                    <span className="editor-affiliation"> ({editorDetail.affiliation})</span>
+                                    <span className="editor-affiliation">
+                                      {' '}({editorDetail.affiliation.trim().replace(/^\((.*)\)$/, '$1').trim()})
+                                    </span>
                                   )}
                                 </>
                               ) : (
                                 <>
                                   <span>{editorDetail.name}</span>
                                   {editorDetail.affiliation && (
-                                    <span className="editor-affiliation"> ({editorDetail.affiliation})</span>
+                                    <span className="editor-affiliation">
+                                      {' '}({editorDetail.affiliation.trim().replace(/^\((.*)\)$/, '$1').trim()})
+                                    </span>
                                   )}
                                 </>
                               )}

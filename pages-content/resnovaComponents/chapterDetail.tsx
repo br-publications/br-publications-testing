@@ -57,7 +57,7 @@ const ChapterDetail: React.FC = () => {
                     <Link href={`/author/${String(auth.id)}/${toBookNameSlug(auth.name)}`} className="author-link">{auth.name}</Link>
                     {auth.affiliation && (
                         <span className="author-affiliation">
-                            {' '}{auth.affiliation.trim().startsWith('(') ? auth.affiliation : `(${auth.affiliation})`}
+                            {' '}({auth.affiliation.trim().replace(/^\((.*)\)$/, '$1').trim()})
                         </span>
                     )}
                 </span>
