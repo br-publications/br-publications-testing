@@ -19,7 +19,7 @@ import { setAuthToken, setStoredUser } from '../../services/api.config';
  */
 const GoogleCallbackHandler: React.FC = () => {
     const router = useRouter();
-    const [searchParams] = useSearchParams();
+    const searchParams = useSearchParams();
     const [status, setStatus] = useState<'loading' | 'error'>('loading');
     const [errorMessage, setErrorMessage] = useState('');
 
