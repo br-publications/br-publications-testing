@@ -57,16 +57,15 @@ const GoogleCallbackHandler: React.FC = () => {
                 });
 
                 if (result.data?.requiresOtp) {
-                    // Backend sent OTP to user's email — navigate to login OTP step
-                    router.push('/login', {
-                        replace: true,
-                        state: {
-                            googleOtp: true,
-                            email: result.data.email,
-                            tempToken: result.data.tempToken,
-                            isNewUser: result.data.isNewUser ?? false,
-                        },
-                    });
+                    // Backend sent OTP to user's email — store data in sessionStorage
+                    // then navigate to login OTP step
+                    sessionStorage.setItem('google_otp_pending', JSON.stringify({
+                        googleOtp: true,
+                        email: result.data.email,
+                        tempToken: result.data.tempToken,
+                        isNewUser: result.data.isNewUser ?? false,
+                    }));
+                    router.replace('/login');
                 } else if (result.data?.token && result.data?.user) {
                     // Immediate login (no OTP required) — store via centralized functions (sessionStorage)
                     setAuthToken(result.data.token);

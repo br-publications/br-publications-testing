@@ -47,20 +47,29 @@ const Login: React.FC = () => {
       const isVerified = !!state.emailVerified;
       showAlert(isVerified ? 'success' : 'info', isVerified ? 'Email Verified' : 'Authentication Required', state.message);
     }
-    // Redirected from GoogleCallbackHandler — jump straight to OTP
-    if (state?.googleOtp && state?.email && state?.tempToken) {
-      setIsGoogleOtp(true);
-      setUserEmail(state.email);
-      setGoogleTempToken(state.tempToken);
-      setIsNewGoogleUser(state.isNewUser ?? false);
-      setCurrentSection('otp');
-      showAlert(
-        'success',
-        state.isNewUser ? 'Account Created!' : 'Welcome Back!',
-        `An OTP has been sent to ${state.email}. Please verify to complete sign-in.`
-      );
+    // Check for Google OTP data stored by GoogleCallbackHandler
+    const googleOtpRaw = sessionStorage.getItem('google_otp_pending');
+    if (googleOtpRaw) {
+      try {
+        const googleOtpData = JSON.parse(googleOtpRaw);
+        sessionStorage.removeItem('google_otp_pending'); // clear immediately
+        if (googleOtpData.googleOtp && googleOtpData.email && googleOtpData.tempToken) {
+          setIsGoogleOtp(true);
+          setUserEmail(googleOtpData.email);
+          setGoogleTempToken(googleOtpData.tempToken);
+          setIsNewGoogleUser(googleOtpData.isNewUser ?? false);
+          setCurrentSection('otp');
+          showAlert(
+            'success',
+            googleOtpData.isNewUser ? 'Account Created!' : 'Welcome Back!',
+            `An OTP has been sent to ${googleOtpData.email}. Please verify to complete sign-in.`
+          );
+        }
+      } catch {
+        sessionStorage.removeItem('google_otp_pending');
+      }
     }
-  }, [location]);
+  }, []);
 
   const showAlert = (type: AlertType, title: string, message: string) => {
     setAlertConfig({
