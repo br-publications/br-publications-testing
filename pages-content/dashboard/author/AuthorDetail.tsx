@@ -108,7 +108,7 @@ const AuthorDetail: React.FC = () => {
             <div className="author-detail-page error">
                 <h2>Error</h2>
                 <p>{error || 'Author not found'}</p>
-                <button onClick={() => router.push(-1)} className="back-btn">
+                <button onClick={() => router.back()} className="back-btn">
                     <ArrowLeft size={14} /> Go Back
                 </button>
             </div>
@@ -181,7 +181,7 @@ const AuthorDetail: React.FC = () => {
             {/* ── Hero Bar ── */}
             <section className="product-hero">
                 <div className="hero-content">
-                    <button className="back-btn" onClick={() => router.push(-1)}>
+                    <button className="back-btn" onClick={() => router.back()}>
                         <ArrowLeft size={13} /> Back
                     </button>
                     <h1>Author Profile</h1>
