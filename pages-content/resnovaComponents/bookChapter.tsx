@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { type PublishedEditor } from '../../services/bookChapterPublishing.service';
 import type { Book } from '../../types/bookTypes';
 import bookChapterService from '../../services/bookChapterService';
@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 const ProductBookChapter: React.FC = () => {
   const router = useRouter();
-  const location = { pathname: usePathname(), state: {}, search: "" };
+  const searchParams = useSearchParams();
 
   // State management
   const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
@@ -33,11 +33,11 @@ const ProductBookChapter: React.FC = () => {
       .trim()
       .toLowerCase();
   };
-  const [selectedCategory, setSelectedCategory] = useState<string>(location.state?.category || 'All');
-  const [searchQuery, setSearchQuery] = useState<string>(location.state?.searchQuery || '');
-  const [author, setAuthor] = useState<string>(location.state?.author || '');
-  const [publishedAfter, setPublishedAfter] = useState<string>(location.state?.publishedAfter || '');
-  const [publishedBefore, setPublishedBefore] = useState<string>(location.state?.publishedBefore || '');
+  const [selectedCategory, setSelectedCategory] = useState<string>(searchParams?.get('category') || 'All');
+  const [searchQuery, setSearchQuery] = useState<string>(searchParams?.get('searchQuery') || '');
+  const [author, setAuthor] = useState<string>(searchParams?.get('author') || '');
+  const [publishedAfter, setPublishedAfter] = useState<string>(searchParams?.get('publishedAfter') || '');
+  const [publishedBefore, setPublishedBefore] = useState<string>(searchParams?.get('publishedBefore') || '');
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [resolvedEditors, setResolvedEditors] = useState<PublishedEditor[]>([]);
@@ -130,35 +130,46 @@ const ProductBookChapter: React.FC = () => {
 
 
   /**
-   * Sync category and search query if location state changes (e.g., from header search)
+   * Sync parameters if URL search query changes
    */
   useEffect(() => {
+    if (!searchParams) return;
+    
     let hasChanges = false;
-    if (location.state?.category && location.state.category !== selectedCategory) {
-      setSelectedCategory(location.state.category);
+    const cat = searchParams.get('category') || 'All';
+    if (cat !== selectedCategory) {
+      setSelectedCategory(cat);
       hasChanges = true;
     }
-    if (location.state?.searchQuery !== undefined && location.state.searchQuery !== searchQuery) {
-      setSearchQuery(location.state.searchQuery);
+    
+    const query = searchParams.get('searchQuery') || '';
+    if (query !== searchQuery) {
+      setSearchQuery(query);
       hasChanges = true;
     }
-    if (location.state?.author !== undefined && location.state.author !== author) {
-      setAuthor(location.state.author);
+    
+    const auth = searchParams.get('author') || '';
+    if (auth !== author) {
+      setAuthor(auth);
       hasChanges = true;
     }
-    if (location.state?.publishedAfter !== undefined && location.state.publishedAfter !== publishedAfter) {
-      setPublishedAfter(location.state.publishedAfter);
+    
+    const pubAfter = searchParams.get('publishedAfter') || '';
+    if (pubAfter !== publishedAfter) {
+      setPublishedAfter(pubAfter);
       hasChanges = true;
     }
-    if (location.state?.publishedBefore !== undefined && location.state.publishedBefore !== publishedBefore) {
-      setPublishedBefore(location.state.publishedBefore);
+    
+    const pubBefore = searchParams.get('publishedBefore') || '';
+    if (pubBefore !== publishedBefore) {
+      setPublishedBefore(pubBefore);
       hasChanges = true;
     }
 
     if (hasChanges && currentPage !== 1) {
       setCurrentPage(1);
     }
-  }, [location.state]);
+  }, [searchParams]);
 
   /**
    * Handle category selection

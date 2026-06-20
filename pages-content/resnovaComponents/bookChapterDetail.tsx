@@ -474,7 +474,7 @@ const BookChapterDetail: React.FC = () => {
                       className="cite-trigger-btn"
                       title="Generate citation for this book"
                     >
-                      <Quote size={14} /> Cite this Book Chapter
+                      <Quote size={14} /> Cite
                     </button>
 
                     <div className="meta-info">
