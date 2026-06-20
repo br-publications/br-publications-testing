@@ -52,9 +52,9 @@ const ChapterDetail: React.FC = () => {
                         ? <span style={{ color: '#555', fontWeight: 'normal' }}>{' and '}</span>
                         : ', '
                 )}
-                {/* keep name + affiliation together so they never break mid-name */}
-                <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
-                    <Link href={`/author/${String(auth.id)}/${toBookNameSlug(auth.name)}`} className="author-link">{auth.name}</Link>
+                {/* allow affiliation to wrap, but keep name together */}
+                <span className="author-wrapper" style={{ display: 'inline' }}>
+                    <Link href={`/author/${String(auth.id)}/${toBookNameSlug(auth.name)}`} className="author-link" style={{ whiteSpace: 'nowrap' }}>{auth.name}</Link>
                     {auth.affiliation && (
                         <span className="author-affiliation">
                             {' '}({auth.affiliation.trim().replace(/^\((.*)\)$/, '$1').trim()})
