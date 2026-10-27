@@ -1,0 +1,297 @@
+:root{--palette-night-900:#011C40;--fw-regular:400;--color-info-bg:var(--palette-cyan);--color-info-text:var(--palette-navy);--color-accent:var(--palette-teal)}
+main.wad{max-width:none;padding:0;background:var(--palette-ivory);--color-bg:var(--palette-ivory);--color-surface:var(--palette-warm);--color-border:var(--palette-warm-border);--color-text:var(--palette-navy);--color-text-muted:var(--palette-navy-muted);--color-link:var(--palette-editorial);color:var(--palette-navy)}
+
+/* ==========================================================================
+   webAppDevelopment.css
+   Uses ONLY tokens from colors.css and font.css. No hex values here.
+   All selectors are prefixed .wad- so nothing leaks into other pages
+   (the old .hero / .section / .container classes clashed with the home page).
+   ========================================================================== */
+
+/* Local aliases for the navy panels. Dark mode only changes these. */
+.wad {
+  --wad-panel-bg: var(--palette-navy);
+  --wad-panel-deco: var(--palette-night-700);
+  --wad-panel-line: var(--palette-night-500);
+  --wad-panel-text: var(--palette-night-muted);
+  --wad-shadow: color-mix(in srgb, var(--palette-night-900) 12%, transparent);
+
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+}
+
+
+
+.wad *, .wad *::before, .wad *::after { box-sizing: border-box; }
+.wad :focus-visible { outline: 2px solid var(--color-link); outline-offset: 3px; border-radius: 6px; }
+.wad svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.wad-wrap { width: min(1200px, calc(100% - 32px)); margin-inline: auto; }
+.wad-section { margin-bottom: clamp(2rem, 5vw, 4rem); scroll-margin-top: 24px; }
+
+/* ---------- Shared type ---------- */
+.wad-head { margin-bottom: 28px; }
+.wad-head h2 {
+  margin: 0 0 8px; font-family: var(--font-heading); font-size: var(--fs-h2);
+  font-weight: var(--fw-bold); line-height: var(--lh-tight); letter-spacing: var(--ls-heading);
+  color: var(--color-text);
+}
+.wad-head p { margin: 0; color: var(--color-text-muted); }
+
+/* ---------- Buttons ---------- */
+.wad-btn {
+  display: inline-block; padding: 12px 24px; border: 0; cursor: pointer;
+  background: var(--color-primary); color: var(--color-text-on-primary);
+  border-radius: 8px; font-family: var(--font-body); font-size: var(--fs-sm);
+  font-weight: var(--fw-bold); line-height: var(--lh-ui); text-decoration: none;
+  transition: background .15s;
+}
+.wad-btn:hover { background: var(--color-primary-hover); }
+.wad-btn:focus-visible { outline-color: var(--color-link); }
+
+/* ---------- Intro ---------- */
+.wad-intro { margin-top: clamp(40px, 6vw, 72px); margin-bottom: 36px; }
+.wad-crumbs {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 20px;
+  font-size: var(--fs-sm); color: var(--color-text-muted);
+}
+.wad-crumbs a { color: var(--color-link); font-weight: var(--fw-semibold); text-decoration: none; }
+.wad-crumbs a:hover { color: var(--color-link-hover); text-decoration: underline; }
+.wad-intro h1 {
+  margin: 0 0 14px; font-family: var(--font-heading); font-size: var(--fs-display);
+  font-weight: var(--fw-bold); line-height: var(--lh-tight); letter-spacing: var(--ls-heading);
+  color: var(--color-text);
+}
+.wad-lead { margin: 0 0 28px; font-size: var(--fs-lg); line-height: 1.6; color: var(--color-text); }
+.wad-jump { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.wad-jump a {
+  display: inline-block; padding: 8px 16px; border: 1px solid var(--color-link); border-radius: 999px;
+  color: var(--color-link); font-size: var(--fs-sm); font-weight: var(--fw-semibold); line-height: var(--lh-ui);
+  text-decoration: none; transition: background .15s, color .15s;
+}
+.wad-jump a:hover { background: var(--color-link); color: var(--color-bg); }
+
+/* ---------- Stats / comparison strip (cells split by 1px gaps over the border colour) ---------- */
+.wad-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px;
+  background: var(--color-border); border: 1px solid var(--color-border);
+  border-radius: 16px; overflow: hidden;
+}
+.wad-stat { display: flex; flex-direction: column; gap: 4px; padding: 24px; background: var(--color-surface); }
+.wad-stat-value {
+  font-family: var(--font-heading); font-size: var(--fs-h2); font-weight: var(--fw-bold);
+  line-height: var(--lh-tight); color: var(--color-text);
+}
+.wad-stat-label { font-size: var(--fs-sm); color: var(--color-text); }
+.wad-stat h3 {
+  margin: 0; font-family: var(--font-heading); font-size: var(--fs-h5);
+  font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--color-text);
+}
+.wad-stat p { margin: 8px 0 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text); }
+
+/* ---------- Split panel (navy lead + content) ---------- */
+.wad-split {
+  display: grid; grid-template-columns: 1fr;
+  border: 1px solid var(--color-border); border-radius: 20px; overflow: hidden;
+  background: var(--color-surface);
+}
+@media (min-width: 900px) { .wad-split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+
+.wad-lead-panel {
+  position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 20px;
+  padding: clamp(28px, 4vw, 48px);
+  background: var(--wad-panel-bg); color: var(--palette-ivory);
+  border-top: 6px solid var(--color-primary);
+}
+.wad-lead-panel::after {
+  content: ""; position: absolute; right: -100px; bottom: -100px; width: 320px; height: 320px;
+  border-radius: 50%; border: 48px solid var(--wad-panel-deco); pointer-events: none;
+}
+.wad-lead-panel > * { position: relative; z-index: 1; }
+.wad-ico {
+  width: 52px; height: 52px; display: grid; place-items: center; border-radius: 14px;
+  background: var(--palette-cyan); color: var(--palette-navy);
+}
+.wad-ico svg { width: 26px; height: 26px; }
+.wad-lead-panel h2 {
+  margin: 0 0 6px; font-family: var(--font-heading); font-size: var(--fs-h2);
+  font-weight: var(--fw-bold); line-height: var(--lh-tight); letter-spacing: var(--ls-heading);
+  color: var(--palette-ivory);
+}
+.wad-sub { margin: 0; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--palette-cyan); }
+.wad-panel-text { margin: 0; color: var(--wad-panel-text); }
+.wad-big {
+  margin: 0; font-family: var(--font-heading); font-size: var(--fs-display);
+  font-weight: var(--fw-bold); line-height: 1.1; color: var(--palette-ivory);
+}
+.wad-big small {
+  display: block; margin-top: 4px; font-family: var(--font-body); font-size: var(--fs-sm);
+  font-weight: var(--fw-regular); color: var(--palette-cyan);
+}
+.wad-why { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--wad-panel-line); }
+.wad-why h3 {
+  margin: 0 0 16px; font-family: var(--font-heading); font-size: var(--fs-h5);
+  font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--palette-ivory);
+}
+.wad-why ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.wad-why li { display: flex; gap: 12px; align-items: flex-start; font-size: var(--fs-sm); color: var(--palette-ivory); }
+.wad-why li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--palette-cyan); }
+
+.wad-body { padding: clamp(28px, 4vw, 48px); align-content: start; display: grid; gap: 32px; }
+.wad-body h3 {
+  margin: 0 0 16px; font-family: var(--font-heading); font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--color-text);
+}
+
+/* ---------- Cards, item rows, check marks ---------- */
+.wad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.wad-card {
+  padding: 20px; background: var(--color-bg); border: 1px solid var(--color-border);
+  border-radius: 14px; transition: border-color .15s, box-shadow .15s;
+}
+.wad-card:hover { border-color: var(--color-link); box-shadow: 0 10px 24px var(--wad-shadow); }
+.wad-card h4 {
+  display: flex; align-items: flex-start; gap: 10px; margin: 0 0 8px;
+  font-family: var(--font-heading); font-size: var(--fs-h6); font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading); color: var(--color-text);
+}
+.wad-card p { margin: 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text); }
+.wad-check {
+  flex: none; width: 24px; height: 24px; margin-top: -1px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--palette-cyan); color: var(--palette-navy);
+}
+.wad-check svg { width: 14px; height: 14px; stroke-width: 2.4; }
+
+.wad-items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.wad-items li {
+  display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+  background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 12px;
+  font-size: var(--fs-sm); font-weight: var(--fw-semibold); line-height: var(--lh-ui); color: var(--color-text);
+}
+
+/* ---------- Process (a real sequence, so it is numbered) ---------- */
+.wad-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.wad-step { position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; }
+.wad-step:not(:last-child)::before {
+  content: ""; position: absolute; left: 23px; top: 52px; bottom: -16px; width: 2px; background: var(--color-border);
+}
+.wad-step-num {
+  width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%;
+  background: var(--wad-panel-bg); color: var(--palette-ivory);
+  border: 3px solid var(--color-primary);
+  font-family: var(--font-heading); font-size: var(--fs-h5); font-weight: var(--fw-bold);
+}
+.wad-step-card {
+  padding: 20px 24px; background: var(--color-surface);
+  border: 1px solid var(--color-border); border-radius: 14px;
+}
+.wad-step-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-bottom: 8px; }
+.wad-step-card h3 {
+  margin: 0; font-family: var(--font-heading); font-size: var(--fs-h5);
+  font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--color-text);
+}
+.wad-step-card p { margin: 0; font-size: var(--fs-sm); line-height: 1.65; color: var(--color-text); }
+.wad-chip {
+  display: inline-block; padding: 4px 12px; border-radius: 999px;
+  background: var(--color-info-bg); color: var(--color-info-text);
+  font-size: var(--fs-xs); font-weight: var(--fw-semibold); line-height: var(--lh-ui);
+}
+
+/* ---------- Technologies ---------- */
+.wad-panel {
+  padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 56px);
+  background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 16px;
+}
+.wad-tech { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+.wad-tech-card { padding: 24px; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 12px; }
+.wad-tech-card h3 {
+  display: flex; align-items: center; gap: 10px; margin: 0 0 16px;
+  font-family: var(--font-heading); font-size: var(--fs-h5); font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading); color: var(--color-text);
+}
+.wad-tech-card h3::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--color-accent); }
+.wad-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.wad-tags li {
+  padding: 4px 12px; border: 1px solid var(--color-border); border-radius: 999px;
+  background: var(--color-surface); font-size: var(--fs-xs); font-weight: var(--fw-semibold);
+  line-height: var(--lh-ui); color: var(--color-text);
+}
+
+/* ---------- Requirements ---------- */
+.wad-req { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.wad-card dl { margin: 0; display: grid; gap: 8px; font-size: var(--fs-sm); line-height: 1.6; }
+.wad-card dt { font-weight: var(--fw-semibold); color: var(--color-text); }
+.wad-card dd { margin: 0; color: var(--color-text); }
+
+/* ---------- Deliverables ---------- */
+.wad-deliver { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.wad-dcard { padding: 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; }
+.wad-dcard h3 {
+  margin: 0 0 14px; font-family: var(--font-heading); font-size: var(--fs-h5);
+  font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--color-text);
+}
+.wad-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.wad-list li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--fs-sm); line-height: 1.5; color: var(--color-text); }
+.wad-list li::before {
+  content: ""; flex: none; width: 8px; height: 8px; margin-top: 7px; border-radius: 50%; background: var(--color-accent);
+}
+
+/* ---------- Support ---------- */
+.wad-support-block { padding: 20px 24px; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 14px; }
+.wad-support-block h3 { margin-bottom: 12px; font-size: var(--fs-h5); }
+.wad-support-block .wad-list { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+/* ---------- FAQ ---------- */
+.wad-faq { display: grid; gap: 12px; }
+.wad-faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; }
+.wad-faq-item.open { border-color: var(--color-link); }
+.wad-faq-q {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px 20px; border: 0; background: transparent; cursor: pointer; text-align: left;
+  font-family: var(--font-heading); font-size: var(--fs-h6); font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading); color: var(--color-text);
+}
+.wad-faq-q:hover { color: var(--color-link); }
+.wad-faq-q:focus-visible { outline-offset: -3px; }
+.wad-faq-q svg { flex: none; width: 20px; height: 20px; color: var(--color-link); transition: transform .2s; }
+.wad-faq-item.open .wad-faq-q svg { transform: rotate(180deg); }
+.wad-faq-a {
+  display: grid; grid-template-rows: 0fr; visibility: hidden;
+  transition: grid-template-rows .25s ease, visibility 0s .25s;
+}
+.wad-faq-item.open .wad-faq-a { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .25s ease; }
+.wad-faq-a > div { min-height: 0; overflow: hidden; }
+.wad-faq-a p { margin: 0; padding: 0 20px 20px; font-size: var(--fs-sm); line-height: 1.7; color: var(--color-text); }
+
+/* ---------- Call to action ---------- */
+.wad-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px;
+  margin-bottom: clamp(2rem, 5vw, 4rem); padding: clamp(28px, 4vw, 48px);
+  background: var(--wad-panel-bg); color: var(--palette-ivory);
+  border-top: 6px solid var(--color-primary); border-radius: 20px;
+}
+.wad-cta h2 {
+  margin: 0 0 8px; font-family: var(--font-heading); font-size: var(--fs-h2);
+  font-weight: var(--fw-bold); line-height: var(--lh-tight); letter-spacing: var(--ls-heading);
+  color: var(--palette-ivory);
+}
+.wad-cta p { margin: 0; color: var(--wad-panel-text); }
+
+/* ---------- Small screens + motion ---------- */
+@media (max-width: 640px) {
+  .wad-step { grid-template-columns: 40px minmax(0, 1fr); gap: 14px; }
+  .wad-step-num { width: 40px; height: 40px; font-size: var(--fs-base); }
+  .wad-step:not(:last-child)::before { left: 19px; top: 44px; }
+  .wad-step-card { padding: 16px; }
+}
+@media (max-width: 480px) {
+  .wad-card { padding: 16px; }
+  .wad-btn { width: 100%; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wad * { transition: none !important; }
+}
+

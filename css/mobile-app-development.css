@@ -1,0 +1,297 @@
+:root{--palette-night-900:#011C40;--fw-regular:400;--color-info-bg:var(--palette-cyan);--color-info-text:var(--palette-navy);--color-accent:var(--palette-teal)}
+main.mad{max-width:none;padding:0;background:var(--palette-ivory);--color-bg:var(--palette-ivory);--color-surface:var(--palette-warm);--color-border:var(--palette-warm-border);--color-text:var(--palette-navy);--color-text-muted:var(--palette-navy-muted);--color-link:var(--palette-editorial);color:var(--palette-navy)}
+
+/* ==========================================================================
+   mobileAppDevelopment.css
+   Uses ONLY tokens from colors.css and font.css. No hex values here.
+   All selectors are prefixed .mad- so nothing leaks into other pages
+   (the old .hero / .section / .container classes clashed with the home page).
+   ========================================================================== */
+
+/* Local aliases for the navy panels. Dark mode only changes these. */
+.mad {
+  --mad-panel-bg: var(--palette-navy);
+  --mad-panel-deco: var(--palette-night-700);
+  --mad-panel-line: var(--palette-night-500);
+  --mad-panel-text: var(--palette-night-muted);
+  --mad-shadow: color-mix(in srgb, var(--palette-night-900) 12%, transparent);
+
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+}
+
+
+
+.mad *, .mad *::before, .mad *::after { box-sizing: border-box; }
+.mad :focus-visible { outline: 2px solid var(--color-link); outline-offset: 3px; border-radius: 6px; }
+.mad svg { fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+.mad-wrap { width: min(1200px, calc(100% - 32px)); margin-inline: auto; }
+.mad-section { margin-bottom: clamp(2rem, 5vw, 4rem); scroll-margin-top: 24px; }
+
+/* ---------- Shared type ---------- */
+.mad-head { margin-bottom: 28px; }
+.mad-head h2 {
+  margin: 0 0 8px; font-family: var(--font-heading); font-size: var(--fs-h2);
+  font-weight: var(--fw-bold); line-height: var(--lh-tight); letter-spacing: var(--ls-heading);
+  color: var(--color-text);
+}
+.mad-head p { margin: 0; color: var(--color-text-muted); }
+
+/* ---------- Buttons ---------- */
+.mad-btn {
+  display: inline-block; padding: 12px 24px; border: 0; cursor: pointer;
+  background: var(--color-primary); color: var(--color-text-on-primary);
+  border-radius: 8px; font-family: var(--font-body); font-size: var(--fs-sm);
+  font-weight: var(--fw-bold); line-height: var(--lh-ui); text-decoration: none;
+  transition: background .15s;
+}
+.mad-btn:hover { background: var(--color-primary-hover); }
+.mad-btn:focus-visible { outline-color: var(--color-link); }
+
+/* ---------- Intro ---------- */
+.mad-intro { margin-top: clamp(40px, 6vw, 72px); margin-bottom: 36px; }
+.mad-crumbs {
+  display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 20px;
+  font-size: var(--fs-sm); color: var(--color-text-muted);
+}
+.mad-crumbs a { color: var(--color-link); font-weight: var(--fw-semibold); text-decoration: none; }
+.mad-crumbs a:hover { color: var(--color-link-hover); text-decoration: underline; }
+.mad-intro h1 {
+  margin: 0 0 14px; font-family: var(--font-heading); font-size: var(--fs-display);
+  font-weight: var(--fw-bold); line-height: var(--lh-tight); letter-spacing: var(--ls-heading);
+  color: var(--color-text);
+}
+.mad-lead { margin: 0 0 28px; font-size: var(--fs-lg); line-height: 1.6; color: var(--color-text); }
+.mad-jump { list-style: none; margin: 28px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.mad-jump a {
+  display: inline-block; padding: 8px 16px; border: 1px solid var(--color-link); border-radius: 999px;
+  color: var(--color-link); font-size: var(--fs-sm); font-weight: var(--fw-semibold); line-height: var(--lh-ui);
+  text-decoration: none; transition: background .15s, color .15s;
+}
+.mad-jump a:hover { background: var(--color-link); color: var(--color-bg); }
+
+/* ---------- Stats / comparison strip (cells split by 1px gaps over the border colour) ---------- */
+.mad-stats {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1px;
+  background: var(--color-border); border: 1px solid var(--color-border);
+  border-radius: 16px; overflow: hidden;
+}
+.mad-stat { display: flex; flex-direction: column; gap: 4px; padding: 24px; background: var(--color-surface); }
+.mad-stat-value {
+  font-family: var(--font-heading); font-size: var(--fs-h2); font-weight: var(--fw-bold);
+  line-height: var(--lh-tight); color: var(--color-text);
+}
+.mad-stat-label { font-size: var(--fs-sm); color: var(--color-text); }
+.mad-stat h3 {
+  margin: 0; font-family: var(--font-heading); font-size: var(--fs-h5);
+  font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--color-text);
+}
+.mad-stat p { margin: 8px 0 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text); }
+
+/* ---------- Split panel (navy lead + content) ---------- */
+.mad-split {
+  display: grid; grid-template-columns: 1fr;
+  border: 1px solid var(--color-border); border-radius: 20px; overflow: hidden;
+  background: var(--color-surface);
+}
+@media (min-width: 900px) { .mad-split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } }
+
+.mad-lead-panel {
+  position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 20px;
+  padding: clamp(28px, 4vw, 48px);
+  background: var(--mad-panel-bg); color: var(--palette-ivory);
+  border-top: 6px solid var(--color-primary);
+}
+.mad-lead-panel::after {
+  content: ""; position: absolute; right: -100px; bottom: -100px; width: 320px; height: 320px;
+  border-radius: 50%; border: 48px solid var(--mad-panel-deco); pointer-events: none;
+}
+.mad-lead-panel > * { position: relative; z-index: 1; }
+.mad-ico {
+  width: 52px; height: 52px; display: grid; place-items: center; border-radius: 14px;
+  background: var(--palette-cyan); color: var(--palette-navy);
+}
+.mad-ico svg { width: 26px; height: 26px; }
+.mad-lead-panel h2 {
+  margin: 0 0 6px; font-family: var(--font-heading); font-size: var(--fs-h2);
+  font-weight: var(--fw-bold); line-height: var(--lh-tight); letter-spacing: var(--ls-heading);
+  color: var(--palette-ivory);
+}
+.mad-sub { margin: 0; font-size: var(--fs-sm); font-weight: var(--fw-semibold); color: var(--palette-cyan); }
+.mad-panel-text { margin: 0; color: var(--mad-panel-text); }
+.mad-big {
+  margin: 0; font-family: var(--font-heading); font-size: var(--fs-display);
+  font-weight: var(--fw-bold); line-height: 1.1; color: var(--palette-ivory);
+}
+.mad-big small {
+  display: block; margin-top: 4px; font-family: var(--font-body); font-size: var(--fs-sm);
+  font-weight: var(--fw-regular); color: var(--palette-cyan);
+}
+.mad-why { margin-top: auto; padding-top: 20px; border-top: 1px solid var(--mad-panel-line); }
+.mad-why h3 {
+  margin: 0 0 16px; font-family: var(--font-heading); font-size: var(--fs-h5);
+  font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--palette-ivory);
+}
+.mad-why ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.mad-why li { display: flex; gap: 12px; align-items: flex-start; font-size: var(--fs-sm); color: var(--palette-ivory); }
+.mad-why li svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--palette-cyan); }
+
+.mad-body { padding: clamp(28px, 4vw, 48px); align-content: start; display: grid; gap: 32px; }
+.mad-body h3 {
+  margin: 0 0 16px; font-family: var(--font-heading); font-size: var(--fs-h4);
+  font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--color-text);
+}
+
+/* ---------- Cards, item rows, check marks ---------- */
+.mad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.mad-card {
+  padding: 20px; background: var(--color-bg); border: 1px solid var(--color-border);
+  border-radius: 14px; transition: border-color .15s, box-shadow .15s;
+}
+.mad-card:hover { border-color: var(--color-link); box-shadow: 0 10px 24px var(--mad-shadow); }
+.mad-card h4 {
+  display: flex; align-items: flex-start; gap: 10px; margin: 0 0 8px;
+  font-family: var(--font-heading); font-size: var(--fs-h6); font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading); color: var(--color-text);
+}
+.mad-card p { margin: 0; font-size: var(--fs-sm); line-height: 1.6; color: var(--color-text); }
+.mad-check {
+  flex: none; width: 24px; height: 24px; margin-top: -1px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--palette-cyan); color: var(--palette-navy);
+}
+.mad-check svg { width: 14px; height: 14px; stroke-width: 2.4; }
+
+.mad-items { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.mad-items li {
+  display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+  background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 12px;
+  font-size: var(--fs-sm); font-weight: var(--fw-semibold); line-height: var(--lh-ui); color: var(--color-text);
+}
+
+/* ---------- Process (a real sequence, so it is numbered) ---------- */
+.mad-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; }
+.mad-step { position: relative; display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; }
+.mad-step:not(:last-child)::before {
+  content: ""; position: absolute; left: 23px; top: 52px; bottom: -16px; width: 2px; background: var(--color-border);
+}
+.mad-step-num {
+  width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%;
+  background: var(--mad-panel-bg); color: var(--palette-ivory);
+  border: 3px solid var(--color-primary);
+  font-family: var(--font-heading); font-size: var(--fs-h5); font-weight: var(--fw-bold);
+}
+.mad-step-card {
+  padding: 20px 24px; background: var(--color-surface);
+  border: 1px solid var(--color-border); border-radius: 14px;
+}
+.mad-step-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; margin-bottom: 8px; }
+.mad-step-card h3 {
+  margin: 0; font-family: var(--font-heading); font-size: var(--fs-h5);
+  font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--color-text);
+}
+.mad-step-card p { margin: 0; font-size: var(--fs-sm); line-height: 1.65; color: var(--color-text); }
+.mad-chip {
+  display: inline-block; padding: 4px 12px; border-radius: 999px;
+  background: var(--color-info-bg); color: var(--color-info-text);
+  font-size: var(--fs-xs); font-weight: var(--fw-semibold); line-height: var(--lh-ui);
+}
+
+/* ---------- Technologies ---------- */
+.mad-panel {
+  padding: clamp(28px, 4vw, 48px) clamp(20px, 4vw, 56px);
+  background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 16px;
+}
+.mad-tech { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.mad-tech-card { padding: 24px; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 12px; }
+.mad-tech-card h3 {
+  display: flex; align-items: center; gap: 10px; margin: 0 0 16px;
+  font-family: var(--font-heading); font-size: var(--fs-h5); font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading); color: var(--color-text);
+}
+.mad-tech-card h3::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--color-accent); }
+.mad-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.mad-tags li {
+  padding: 4px 12px; border: 1px solid var(--color-border); border-radius: 999px;
+  background: var(--color-surface); font-size: var(--fs-xs); font-weight: var(--fw-semibold);
+  line-height: var(--lh-ui); color: var(--color-text);
+}
+
+/* ---------- Requirements ---------- */
+.mad-req { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.mad-card dl { margin: 0; display: grid; gap: 8px; font-size: var(--fs-sm); line-height: 1.6; }
+.mad-card dt { font-weight: var(--fw-semibold); color: var(--color-text); }
+.mad-card dd { margin: 0; color: var(--color-text); }
+
+/* ---------- Deliverables ---------- */
+.mad-deliver { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+.mad-dcard { padding: 24px; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; }
+.mad-dcard h3 {
+  margin: 0 0 14px; font-family: var(--font-heading); font-size: var(--fs-h5);
+  font-weight: var(--fw-semibold); line-height: var(--lh-heading); color: var(--color-text);
+}
+.mad-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.mad-list li { display: flex; gap: 10px; align-items: flex-start; font-size: var(--fs-sm); line-height: 1.5; color: var(--color-text); }
+.mad-list li::before {
+  content: ""; flex: none; width: 8px; height: 8px; margin-top: 7px; border-radius: 50%; background: var(--color-accent);
+}
+
+/* ---------- Support ---------- */
+.mad-support-block { padding: 20px 24px; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 14px; }
+.mad-support-block h3 { margin-bottom: 12px; font-size: var(--fs-h5); }
+.mad-support-block .mad-list { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+/* ---------- FAQ ---------- */
+.mad-faq { display: grid; gap: 12px; }
+.mad-faq-item { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 14px; overflow: hidden; }
+.mad-faq-item.open { border-color: var(--color-link); }
+.mad-faq-q {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 16px 20px; border: 0; background: transparent; cursor: pointer; text-align: left;
+  font-family: var(--font-heading); font-size: var(--fs-h6); font-weight: var(--fw-semibold);
+  line-height: var(--lh-heading); color: var(--color-text);
+}
+.mad-faq-q:hover { color: var(--color-link); }
+.mad-faq-q:focus-visible { outline-offset: -3px; }
+.mad-faq-q svg { flex: none; width: 20px; height: 20px; color: var(--color-link); transition: transform .2s; }
+.mad-faq-item.open .mad-faq-q svg { transform: rotate(180deg); }
+.mad-faq-a {
+  display: grid; grid-template-rows: 0fr; visibility: hidden;
+  transition: grid-template-rows .25s ease, visibility 0s .25s;
+}
+.mad-faq-item.open .mad-faq-a { grid-template-rows: 1fr; visibility: visible; transition: grid-template-rows .25s ease; }
+.mad-faq-a > div { min-height: 0; overflow: hidden; }
+.mad-faq-a p { margin: 0; padding: 0 20px 20px; font-size: var(--fs-sm); line-height: 1.7; color: var(--color-text); }
+
+/* ---------- Call to action ---------- */
+.mad-cta {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 32px;
+  margin-bottom: clamp(2rem, 5vw, 4rem); padding: clamp(28px, 4vw, 48px);
+  background: var(--mad-panel-bg); color: var(--palette-ivory);
+  border-top: 6px solid var(--color-primary); border-radius: 20px;
+}
+.mad-cta h2 {
+  margin: 0 0 8px; font-family: var(--font-heading); font-size: var(--fs-h2);
+  font-weight: var(--fw-bold); line-height: var(--lh-tight); letter-spacing: var(--ls-heading);
+  color: var(--palette-ivory);
+}
+.mad-cta p { margin: 0; color: var(--mad-panel-text); }
+
+/* ---------- Small screens + motion ---------- */
+@media (max-width: 640px) {
+  .mad-step { grid-template-columns: 40px minmax(0, 1fr); gap: 14px; }
+  .mad-step-num { width: 40px; height: 40px; font-size: var(--fs-base); }
+  .mad-step:not(:last-child)::before { left: 19px; top: 44px; }
+  .mad-step-card { padding: 16px; }
+}
+@media (max-width: 480px) {
+  .mad-card { padding: 16px; }
+  .mad-btn { width: 100%; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mad * { transition: none !important; }
+}
+

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ResNova Academic Press</title>
+<link rel="icon" type="image/png" href="assets/images/resnova fevi icon.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Open+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/home.css">
+<link rel="stylesheet" href="css/about-us.css">
+<link rel="stylesheet" href="css/contact-us.css">
+<link rel="stylesheet" href="css/ipr.css">
+<link rel="stylesheet" href="css/web-app-development.css">
+<link rel="stylesheet" href="css/mobile-app-development.css">
+<link rel="stylesheet" href="css/student-internship-program.css">
+<link rel="stylesheet" href="css/textbook-author-guidelines.css">
+<link rel="stylesheet" href="css/books-list.css">
+<link rel="stylesheet" href="css/book-details.css">
+<link rel="stylesheet" href="css/book-chapter-author-guidelines.css">
+<link rel="stylesheet" href="css/book-chapters-list.css">
+<link rel="stylesheet" href="css/book-chapter-details.css">
+<link rel="stylesheet" href="css/chapter-detail-page.css">
+<link rel="stylesheet" href="css/author-detail-page.css">
+<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+
+<!-- ═══════════════════════════  HEADER  ═══════════════════════════ -->
+<header class="site-header">
+  <div class="top">
+    <a class="logo" href="#home" aria-label="ResNova Academic Press home"><img alt="ResNova Academic Press logo" src="assets/images/resnova_logo.png"></a>
+    <div class="brand">
+      <h1>ResNova Academic Press</h1>
+      <span class="pill">Registered under Ministry of MSME, Government of India</span>
+    </div>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+      </button>
+      <button class="icon-btn primary" aria-label="Account" type="button">
+        <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="4.5"/><path d="M3.5 21c0-4.4 3.8-7 8.5-7s8.5 2.6 8.5 7z"/></svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="nav" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <nav class="nav" id="nav" aria-label="Main">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li class="has-dd"><a href="#" aria-haspopup="true" aria-expanded="false">Journals <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 3.5h10L6 9z"/></svg></a><ul class="dropdown"><li><a href="https://james.brpublications.com/index.php/James/index" target="_blank" rel="noopener noreferrer">JAMES</a></li><li><a href="https://james.brpublications.com/index.php/James/index" target="_blank" rel="noopener noreferrer">JNRI</a></li></ul></li>
+      <li><a href="https://conference.resnovaacademicpress.com" target="_blank" rel="noopener noreferrer">Conference</a></li>
+      <li class="has-dd"><a href="#" aria-haspopup="true" aria-expanded="false">Book Chapter <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 3.5h10L6 9z"/></svg></a><ul class="dropdown"><li><a href="#chapter-guidelines">Author Guidelines</a></li><li><a href="#" data-form="book-chapter-manuscript">Submit Book Chapter</a></li><li><a href="#chapters">Recent Advances</a></li></ul></li>
+      <li class="has-dd"><a href="#" aria-haspopup="true" aria-expanded="false">Books <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 3.5h10L6 9z"/></svg></a><ul class="dropdown"><li><a href="#book-guidelines">Author Guidelines</a></li><li><a href="#" data-form="text-book-manuscript">Submit Book Content</a></li><li><a href="#books">Our Products</a></li></ul></li>
+      <li class="has-dd"><a href="#ipr" aria-haspopup="true" aria-expanded="false">IPR <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 3.5h10L6 9z"/></svg></a><ul class="dropdown"><li><a href="#ipr/patent">Patent Filing</a></li><li><a href="#ipr/copyright">Copyright Registration</a></li><li><a href="#ipr/trademark">Trademark</a></li></ul></li>
+      <li class="has-dd"><a href="#" aria-haspopup="true" aria-expanded="false">Research &amp; Projects <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 3.5h10L6 9z"/></svg></a><ul class="dropdown"><li><a href="#web-app">Web Application Development</a></li><li><a href="#mobile-app">Mobile Application Development</a></li><li><a href="#internship">Student Internship Program</a></li></ul></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ═══════════════════════════  PAGE: HOME  ═══════════════════════════ -->
+<main id="pg-home" class="page home">
+<section class="hero" aria-roledescription="carousel" aria-label="Featured books">
+<div id="slides" aria-live="polite">
+<article class="slide" aria-label="1 of 4">
+<div class="copy"><span class="tag">Book of the month</span><h2>Advances in Applied Research</h2><p class="desc">A peer-reviewed collection of chapters on emerging methods, case studies and applications across science, engineering and management, written for researchers and postgraduate students.</p><a class="btn" href="#">View this book</a></div>
+<div class="visual"><div class="book"><div class="pages"></div><div class="cover c1"><span class="pub">ResNova Academic Press</span><span class="ttl">Advances in Applied Research</span><span class="rule"></span><span class="vol">Edited Volume</span></div></div><p class="note">*Available in print and e-book</p></div>
+</article>
+<article class="slide" aria-label="2 of 4" hidden>
+<div class="copy"><span class="tag">New release</span><h2>Frontiers in Engineering &amp; Technology</h2><p class="desc">Explore current trends in engineering and technology, from smart systems to sustainable design, with contributions from researchers across India.</p><a class="btn" href="#">View this book</a></div>
+<div class="visual"><div class="book"><div class="pages"></div><div class="cover c2"><span class="pub">ResNova Academic Press</span><span class="ttl">Frontiers in Engineering &amp; Technology</span><span class="rule"></span><span class="vol">Edited Volume</span></div></div><p class="note">*Available in print and e-book</p></div>
+</article>
+<article class="slide" aria-label="3 of 4" hidden>
+<div class="copy"><span class="tag">Editor's pick</span><h2>Contemporary Studies in Management</h2><p class="desc">Perspectives on organisational behaviour, finance and entrepreneurship, bringing together empirical studies and practical insights.</p><a class="btn" href="#">View this book</a></div>
+<div class="visual"><div class="book"><div class="pages"></div><div class="cover c3"><span class="pub">ResNova Academic Press</span><span class="ttl">Contemporary Studies in Management</span><span class="rule"></span><span class="vol">Edited Volume</span></div></div><p class="note">*Available in print and e-book</p></div>
+</article>
+<article class="slide" aria-label="4 of 4" hidden>
+<div class="copy"><span class="tag">Featured title</span><h2>Emerging Trends in Science &amp; Society</h2><p class="desc">A multidisciplinary volume connecting scientific research with social impact, with chapters on health, environment and education.</p><a class="btn" href="#">View this book</a></div>
+<div class="visual"><div class="book"><div class="pages"></div><div class="cover c4"><span class="pub">ResNova Academic Press</span><span class="ttl">Emerging Trends in Science &amp; Society</span><span class="rule"></span><span class="vol">Edited Volume</span></div></div><p class="note">*Available in print and e-book</p></div>
+</article>
+</div>
+<div class="controls">
+<button class="arrow" id="prev" type="button" aria-label="Previous book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 6l-6 6 6 6"/></svg></button>
+<button class="arrow" id="next" type="button" aria-label="Next book"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 6l6 6-6 6"/></svg></button>
+</div>
+</section>
+<div class="welcome">
+  <section class="intro">
+    <div>
+      <p class="greeting">Greetings &amp; welcome</p>
+      <h2>Resnova Academic Press</h2>
+    </div>
+    <p class="body"><strong>Resnova Academic Press</strong> publishes high-quality academic and professional works for readers and researchers with a passion for knowledge across many disciplines. Our titles span <strong>Sciences, Medical Sciences, Engineering, Technology, Humanities</strong> and more, reflecting our commitment to academic excellence and intellectual growth.</p>
+  </section>
+  <section class="split" aria-labelledby="split-title">
+    <div class="lead">
+      <div>
+        <h2 id="split-title">Publish with us</h2>
+        <p>Publishing opportunities across five major domains.</p>
+      </div>
+      <p class="stat">250+<small>topics to publish in</small></p>
+      <a class="btn" href="#discover">Discover more</a>
+    </div>
+    <ul class="domains">
+      <li><a href="#business">Business &amp; Management</a></li>
+      <li><a href="#education">Education &amp; Social Sciences</a></li>
+      <li><a href="#engineering">Engineering Science</a></li>
+      <li><a href="#medical">Scientific, Technical &amp; Medical</a></li>
+      <li><a href="#interdisciplinary">Interdisciplinary Sciences</a></li>
+    </ul>
+  </section>
+</div>
+<section class="quick" aria-labelledby="quick-title">
+  <div class="qa-head"><p class="qa-eyebrow">Quick access</p><h2 id="quick-title">What would you like to do?</h2></div>
+  <div class="qa-cards">
+    <a class="qa-card" href="#submit-journal"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10.5 5 8 4.5 3.5 4.5v13c4.5 0 7 .5 8.5 2 1.5-1.5 4-2 8.5-2v-13C16 4.5 13.5 5 12 6.5zM12 6.5v13"/></svg></span><h3>Submit a Journal Manuscript</h3><p>Send your research to our peer-reviewed journals.</p><span class="qa-go">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="qa-card" href="#submit-book"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span><h3>Submit a Book Proposal</h3><p>Pitch your idea for an authored or edited book.</p><span class="qa-go">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="qa-card" href="#submit-textbook"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6M9 8h2"/></svg></span><h3>Submit a Textbook</h3><p>Publish course and reference material for learners.</p><span class="qa-go">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="qa-card" href="#ipr-services"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5.5c0 4.5-3.2 8-8 9.5-4.8-1.5-8-5-8-9.5V6z"/></svg></span><h3>IPR Services</h3><p>Patent, copyright and trademark support.</p><span class="qa-go">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  </div>
+  <div class="qa-bar">
+    <div class="qa-subjects"><p class="qa-label">Browse by subject</p><a class="chip" href="#engineering-management">Engineering &amp; Management</a><a class="chip" href="#medical-health">Medical &amp; Health Sciences</a><a class="chip" href="#interdisciplinary-sciences">Interdisciplinary Sciences</a></div>
+    <a class="qa-login" href="#login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4.5 20c0-4 3.4-6 7.5-6s7.5 2 7.5 6"/></svg>Login</a>
+  </div>
+</section>
+<section class="conf" aria-labelledby="conf-title">
+  <div class="conf-head">
+    <div><p class="conf-eyebrow">Events</p><h2 id="conf-title">Upcoming Conferences</h2></div>
+    <a class="conf-all" href="#all-conferences">See all upcoming <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+  <ul class="conf-list">
+    <li class="conf-card">
+      <time class="conf-date" datetime="2027-01-12"><span class="m">Jan</span><span class="d">12</span><span class="y">2027</span></time>
+      <div class="conf-body"><span class="conf-chip">Call for papers open</span><h3>ResNova International Conference on Engineering &amp; Technology (RICET 2027)</h3>
+        <ul class="conf-meta"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>12&ndash;13 January 2027</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Chennai, India</li></ul></div>
+      <div class="conf-actions"><a class="conf-btn" href="#cfp-ricet">Call for papers</a><a class="conf-btn alt" href="#about-ricet">About</a></div>
+    </li>
+    <li class="conf-card">
+      <time class="conf-date" datetime="2027-02-18"><span class="m">Feb</span><span class="d">18</span><span class="y">2027</span></time>
+      <div class="conf-body"><span class="conf-chip">Registration open</span><h3>ResNova International Conference on Medical &amp; Health Sciences (RICMHS 2027)</h3>
+        <ul class="conf-meta"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>18&ndash;19 February 2027</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Bengaluru, India</li></ul></div>
+      <div class="conf-actions"><a class="conf-btn" href="#attend-ricmhs">Attend</a><a class="conf-btn alt" href="#about-ricmhs">About</a></div>
+    </li>
+    <li class="conf-card">
+      <time class="conf-date" datetime="2027-03-25"><span class="m">Mar</span><span class="d">25</span><span class="y">2027</span></time>
+      <div class="conf-body"><span class="conf-chip">Registration open</span><h3>ResNova International Conference on Business &amp; Management (RICBM 2027)</h3>
+        <ul class="conf-meta"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>25&ndash;26 March 2027</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Hyderabad, India</li></ul></div>
+      <div class="conf-actions"><a class="conf-btn" href="#attend-ricbm">Attend</a><a class="conf-btn alt" href="#about-ricbm">About</a></div>
+    </li>
+  </ul>
+</section>
+<section class="tb" aria-labelledby="tb-title">
+  <div class="tb-head">
+    <div><p class="tb-eyebrow">Publications</p><h2 id="tb-title">Text Books</h2></div>
+    <div class="tb-ctrls">
+      <button class="tb-ctrl" id="tbPlay" type="button" data-state="playing" aria-label="Pause automatic scrolling"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+      <button class="tb-ctrl" id="tbPrev" type="button" aria-label="Previous books"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6l-6 6 6 6"/></svg></button>
+      <button class="tb-ctrl" id="tbNext" type="button" aria-label="Next books"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+  <div class="tb-track" id="tbTrack" tabindex="0" role="region" aria-label="Text books">
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">A Textbook of</span><span class="tb-title">Machine Learning and Artificial Intelligence</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Machine Learning and Artificial Intelligence</h3><p class="tb-auth">Prof. Rutuja Ganesh More, Prof. Radha Dilip Thorat, Prof P. Deepthi Jordhana, Mounika, Valasapalli</p><a class="tb-btn" href="#preview-ml-ai">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">A Textbook of</span><span class="tb-title">Numerical Methods</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Numerical Methods</h3><p class="tb-auth">Dr. Sadhana H. Barkund, Dr. Manimekalai S, Dr Kushal Pal Singh, Dr. Rajan Singh</p><a class="tb-btn" href="#preview-numerical-methods">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">A Textbook of</span><span class="tb-title">Advanced Engineering Mathematics</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Advanced Engineering Mathematics</h3><p class="tb-auth">Mrs. Deepika Ghanasham Sarode, Miss. Amruta Kundalik Mule, Mr. Chetankumar Makhamal Patil, Mr. Samadhan K. Patil</p><a class="tb-btn" href="#preview-aem">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">A Textbook of</span><span class="tb-title">Digital Marketing</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Digital Marketing</h3><p class="tb-auth">Dr. S. Prasath, Dr. Daniel Pilli, Dr. S. Saravanan, Mr Deepak Devendra Gaikwad</p><a class="tb-btn" href="#preview-digital-marketing">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">A Textbook of</span><span class="tb-title">Data Structures and Algorithms</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Data Structures and Algorithms</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-dsa">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">A Textbook of</span><span class="tb-title">Engineering Physics</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Engineering Physics</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-physics">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">A Textbook of</span><span class="tb-title">Financial Management</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Financial Management</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-finance">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">A Textbook of</span><span class="tb-title">Research Methodology</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Research Methodology</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-research">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">A Textbook of</span><span class="tb-title">Environmental Science</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Environmental Science</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-environment">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">A Textbook of</span><span class="tb-title">Organic Chemistry Essentials</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Organic Chemistry Essentials</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chemistry">Preview</a></div></article>
+  </div>
+  <div class="tb-dots" id="tbDots"></div>
+</section>
+<section class="tb" aria-labelledby="tb-title2">
+  <div class="tb-head">
+    <div><p class="tb-eyebrow">Publications</p><h2 id="tb-title2">Book Chapters</h2></div>
+    <div class="tb-ctrls">
+      <button class="tb-ctrl" id="tbPlay2" type="button" data-state="playing" aria-label="Pause automatic scrolling"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+      <button class="tb-ctrl" id="tbPrev2" type="button" aria-label="Previous chapters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6l-6 6 6 6"/></svg></button>
+      <button class="tb-ctrl" id="tbNext2" type="button" aria-label="Next chapters"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+  <div class="tb-track" id="tbTrack2" tabindex="0" role="region" aria-label="Book chapters">
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">Book Chapter</span><span class="tb-title">Artificial Intelligence in Healthcare Diagnostics</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Artificial Intelligence in Healthcare Diagnostics</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chapter-1">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">Book Chapter</span><span class="tb-title">Sustainable Materials for Green Construction</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Sustainable Materials for Green Construction</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chapter-2">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">Book Chapter</span><span class="tb-title">Blockchain Applications in Supply Chains</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Blockchain Applications in Supply Chains</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chapter-3">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">Book Chapter</span><span class="tb-title">Digital Transformation in Higher Education</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Digital Transformation in Higher Education</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chapter-4">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">Book Chapter</span><span class="tb-title">IoT-Based Smart Agriculture</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>IoT-Based Smart Agriculture</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chapter-5">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">Book Chapter</span><span class="tb-title">Machine Learning for Financial Forecasting</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Machine Learning for Financial Forecasting</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chapter-6">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">Book Chapter</span><span class="tb-title">Renewable Energy in Smart Grids</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Renewable Energy in Smart Grids</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chapter-7">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">Book Chapter</span><span class="tb-title">Cybersecurity in Cloud Computing</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Cybersecurity in Cloud Computing</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chapter-8">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">Book Chapter</span><span class="tb-title">Women Entrepreneurship in Emerging Economies</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Women Entrepreneurship in Emerging Economies</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chapter-9">Preview</a></div></article>
+    <article class="tb-card"><div class="tb-stage"><div class="tb-book"><div class="tb-pages"></div><div class="tb-cover"><span class="tb-kicker">Book Chapter</span><span class="tb-title">Mental Health in the Digital Age</span><span class="tb-rule"></span><span class="tb-pub">ResNova Academic Press</span></div></div></div><div class="tb-info"><h3>Mental Health in the Digital Age</h3><p class="tb-auth">Author names to be added</p><a class="tb-btn" href="#preview-chapter-10">Preview</a></div></article>
+  </div>
+  <div class="tb-dots" id="tbDots2"></div>
+</section>
+</main>
+
+<!-- ═══════════════════════════  PAGE: ABOUT US  ═══════════════════════════ -->
+<main id="pg-about" class="page home" hidden>
+
+<section class="wrap a-intro" aria-labelledby="about-page-title">
+  <h1 id="about-page-title">Who we are</h1>
+  <p class="a-lead"><strong>ResNova Academic Press</strong> is dedicated to publishing a diverse range of high-quality academic and professional works for readers and researchers with a passion for knowledge across multidisciplinary domains.</p>
+  <ul class="a-points" aria-label="Our focus">
+    <li>Books &amp; Book Chapters</li>
+    <li>Open-access Journal</li>
+    <li>Patent Filing &amp; Consultation</li>
+  </ul>
+</section>
+
+<section class="wrap section" aria-labelledby="about-title">
+  <div class="split">
+    <div class="split-lead">
+      <p class="eyebrow">About ResNova Academic Press</p>
+      <h2 id="about-title">Knowledge across disciplines</h2>
+      <p class="about-body">Our publications span <strong>Sciences, Medical Sciences, Engineering, Technology, Humanities</strong> and more, reflecting our commitment to academic excellence and intellectual growth.</p>
+      <ul class="fields" aria-label="Subject areas">
+        <li>Sciences</li><li>Medical Sciences</li><li>Engineering</li><li>Technology</li><li>Humanities</li>
+      </ul>
+    </div>
+    <div class="divisions">
+      <h3>Under the ResNova Academic Press umbrella, we operate specialised publishing divisions</h3>
+      <article class="card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10.5 5 8 4.5 3.5 4.5v13c4.5 0 7 .5 8.5 2 1.5-1.5 4-2 8.5-2v-13C16 4.5 13.5 5 12 6.5zM12 6.5v13"/></svg></span>
+        <div><h4>ResNova Academic Press</h4><p>Publishes <strong>Book Chapters, Edited Volumes, and Academic Compilations</strong>, serving as a premier platform for scholars and researchers to share innovative findings across disciplines.</p></div>
+      </article>
+      <article class="card">
+        <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v4h4M9 12h6M9 16h6M9 8h2"/></svg></span>
+        <div><h4>Book Publications</h4><p>Focuses on <strong>Comprehensive Textbooks and Reference Materials</strong> for higher education, offering well-structured content designed to support both teaching and learning.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="wrap section feature" aria-label="Flagship journal and patent services">
+  <article class="flag">
+    <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M9 9.5v10"/></svg>Our flagship journal</span>
+    <h3>Journal of Advances in Management, Engineering and Science (JAMES)</h3>
+    <p>An integral part of our publishing ecosystem, <strong>JAMES</strong> is a scholarly open-access international journal giving authors the opportunity to publish peer-reviewed original research papers across management, engineering, science, and their real-world applications.</p>
+    <a class="btn" href="#">Visit JAMES</a>
+  </article>
+  <article class="patent">
+    <div class="head">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5.5c0 4.5-3.2 8-8 9.5-4.8-1.5-8-5-8-9.5V6z"/></svg></span>
+      <div>
+        <p class="eyebrow">Patent filing &amp; consultation services</p>
+        <h3>Protect your ideas and innovations</h3>
+      </div>
+    </div>
+    <p>In addition to publishing, we offer <strong>Exclusive Patent Filing and Consultation Services</strong>. Our expert team provides comprehensive guidance on patent-related processes, ensuring your intellectual property receives the best possible protection, both nationally and internationally.</p>
+    <a class="btn alt" href="#">Explore IPR services</a>
+  </article>
+</section>
+
+<section class="wrap section" aria-labelledby="mv-title">
+  <div class="sec-head"><p class="eyebrow">Purpose</p><h2 class="sec-title" id="mv-title">Our mission &amp; vision</h2></div>
+  <div class="mv">
+    <article class="mv-card">
+      <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span><h3>Our mission</h3></div>
+      <p>To disseminate knowledge through high-quality publications, foster interdisciplinary research, and protect innovations with reliable patent services. We are committed to empowering authors, researchers, and inventors by providing platforms that enhance learning, advance discovery, and safeguard intellectual property.</p>
+    </article>
+    <article class="mv-card">
+      <div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></svg></span><h3>Our vision</h3></div>
+      <p>To become a globally recognised hub for academic excellence and innovation, where books inspire, journals advance research, and patents protect creativity, contributing to the growth of education, science, and technology for a sustainable future.</p>
+    </article>
+  </div>
+</section>
+
+<section class="wrap section commit" aria-labelledby="commit-title">
+  <p class="eyebrow">Our commitment to excellence</p>
+  <h2 class="sec-title" id="commit-title">Powered by innovation, technology and integrity</h2>
+  <p class="commit-lead">At <strong>ResNova Academic Press</strong>, we are committed to delivering exceptional services powered by innovation, technology, and integrity. Our goal is to empower authors, researchers, and inventors by helping them <strong>publish, promote, and protect</strong> their creative and intellectual contributions to society.</p>
+  <div class="pillars">
+    <article class="pillar"><div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></span><h3>Innovation</h3></div><p>Cutting-edge publishing solutions</p></article>
+    <article class="pillar"><div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12.5" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span><h3>Technology</h3></div><p>Advanced digital platforms</p></article>
+    <article class="pillar"><div class="head"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v5.5c0 4.5-3.2 8-8 9.5-4.8-1.5-8-5-8-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><h3>Integrity</h3></div><p>Ethical publishing standards</p></article>
+  </div>
+</section>
+
+<section class="wrap section cta" aria-labelledby="cta-title">
+  <div><h2 id="cta-title">Ready to publish with us?</h2><p>Talk to our team about books, chapters, journals or IPR.</p></div>
+  <div class="acts"><a class="btn" href="#contact">Contact us</a><a class="btn alt" href="#">Submit your work</a></div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════  PAGE: CONTACT US  ═══════════════════════════ -->
+<main id="pg-contact" class="page home" hidden>
+
+<section class="c-intro" aria-labelledby="contact-page-title">
+  <h1 id="contact-page-title">How can we help?</h1>
+  <p class="c-lead">Questions about publishing, conferences or IPR services? Reach out in whichever way suits you best.</p>
+  <ul class="c-points">
+    <li><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Support for authors, editors and conference organisers</li>
+    <li><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Guidance on journals, book chapters, textbooks and IPR</li>
+    <li><span class="tk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Registered under Ministry of MSME, Government of India</li>
+  </ul>
+</section>
+
+<section class="c-cards" aria-label="Ways to reach us">
+  <div class="c-card"><span class="ico2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.5 4-2 1.5a11 11 0 0 0 6.5 6.5L16 14l4 1.5V19a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><div><h2>Call us</h2><p class="sub">Speak to our team directly</p><a class="val" href="tel:+919842768170">+91 98427 68170</a></div></div>
+  <div class="c-card"><span class="ico2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></span><div><h2>Email us</h2><p class="sub">Questions, quotes and submissions</p><a class="val" href="mailto:info@resnovaacademicpress.com">info@resnovaacademicpress.com</a></div></div>
+  <div class="c-card"><span class="ico2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg></span><div><h2>Visit us</h2><p class="sub">Our registered office</p><p class="val">6/328-2, Maruthi Nagar, Trichy Road, Namakkal&ndash;637001, Tamilnadu, India</p></div></div>
+</section>
+
+<div class="c-wrap">
+  <aside class="c-side" aria-labelledby="side-title">
+    <p class="c-eyebrow">Get in touch</p>
+    <h2 id="side-title">Let&rsquo;s start a conversation</h2>
+    <p>Tell us a little about your enquiry and the right person on our team will get back to you.</p>
+    <ul class="c-facts">
+      <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></span><div><h3>Office hours</h3><p>Mon &ndash; Sat, 9:30 AM &ndash; 5:30 PM</p></div></li>
+      <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 0 1-11.5 7.2L4 20l1-4.2A8 8 0 1 1 20 12z"/></svg></span><div><h3>Response time</h3><p>Within 1&ndash;2 working days</p></div></li>
+      <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7l8.5 6 8.5-6"/></svg></span><div><h3>Submissions &amp; queries</h3><p>info@resnovaacademicpress.com</p></div></li>
+      <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h3.5l1.5 4-2 1.5a11 11 0 0 0 6.5 6.5L16 14l4 1.5V19a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><div><h3>Phone support</h3><p>+91 98427 68170</p></div></li>
+      <li><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.5 2.6 3.7 5.4 3.7 8.5s-1.2 5.9-3.7 8.5c-2.5-2.6-3.7-5.4-3.7-8.5S9.5 6.1 12 3.5z"/></svg></span><div><h3>Languages</h3><p>English, Tamil &amp; Hindi</p></div></li>
+    </ul>
+    <div class="c-follow"><h3>Connect with us</h3><div><a href="https://wa.me/919842768170" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3.5 20l1.1-3.8A8.5 8.5 0 1 1 20 11.5z"/><path d="M9 8.8c.2 2.6 2.6 5 5.2 5.2l1.2-1.3-1.8-1-.8.7a4 4 0 0 1-2-2l.7-.8-1-1.8z"/></svg></a><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg></a></div></div>
+  </aside>
+  <section class="c-formside" aria-label="Contact form">
+    <form id="contactForm">
+      <fieldset class="topics"><legend>What is this about?</legend><div class="opts"><label class="opt"><input type="radio" name="topic" value="General enquiry" checked><span>General enquiry</span></label><label class="opt"><input type="radio" name="topic" value="Journal submission"><span>Journal submission</span></label><label class="opt"><input type="radio" name="topic" value="Book chapter"><span>Book chapter</span></label><label class="opt"><input type="radio" name="topic" value="Textbook"><span>Textbook</span></label><label class="opt"><input type="radio" name="topic" value="Conference"><span>Conference</span></label><label class="opt"><input type="radio" name="topic" value="IPR services"><span>IPR services</span></label></div></fieldset>
+      <div class="row">
+        <div class="field"><label for="name">Full name <span class="req" aria-hidden="true">*</span></label><input id="name" name="name" type="text" autocomplete="name" placeholder="Enter your full name" required></div>
+        <div class="field"><label for="email">Email address <span class="req" aria-hidden="true">*</span></label><input id="email" name="email" type="email" autocomplete="email" placeholder="Enter your email address" required></div>
+      </div>
+      <div class="field"><label for="phone">Phone number <span class="req" aria-hidden="true">*</span></label><div class="phone"><select name="cc" aria-label="Country code"><option value="+91" selected>IN (+91)</option><option value="+1">US (+1)</option><option value="+44">UK (+44)</option><option value="+971">UAE (+971)</option><option value="+61">AU (+61)</option><option value="+65">SG (+65)</option></select><input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="Enter phone number" pattern="[0-9 ]{6,15}" required></div></div>
+      <div class="field"><label for="msg">Your message <span class="req" aria-hidden="true">*</span></label><textarea id="msg" name="message" placeholder="Tell us how we can help" minlength="10" required></textarea></div>
+      <div class="c-actions"><button class="c-send" type="submit">Send message <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button><p class="c-note"><span class="req" aria-hidden="true">*</span> Required fields</p></div>
+    </form>
+    <div class="c-ok" id="formOk" role="status" tabindex="-1" hidden>
+      <div class="tick-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h2>Thank you!</h2>
+      <p>Your message has been received. Our team will be in touch soon.</p>
+      <button class="c-again" id="again" type="button">Send another message</button>
+    </div>
+  </section>
+</div>
+
+</main>
+
+<!-- ═══════════════════════════  PAGE: IPR (loaded from userPages/ipr.html)  ═══════════════════════════ -->
+<main id="pg-ipr" class="page home ipr-page" hidden></main>
+
+<!-- Research & Projects pages (loaded from userPages/) -->
+<main id="pg-web-app" class="page wad" hidden></main>
+<main id="pg-mobile-app" class="page mad" hidden></main>
+<main id="pg-internship" class="page home" hidden></main>
+<main id="pg-book-guidelines" class="page ag-page" hidden></main>
+<main id="pg-books" class="page bp-page" hidden></main>
+<main id="pg-book-details" class="page bd-page" hidden></main>
+<main id="pg-chapter-guidelines" class="page rn-page" hidden></main>
+<main id="pg-chapters" class="page cp-page" hidden></main>
+<main id="pg-chapter-details" class="page cd-page" hidden></main>
+<main id="pg-chapter" class="page chd-page" hidden></main>
+<main id="pg-author" class="page ap-page" hidden></main>
+<main id="pg-editor" class="page ap-page" hidden></main>
+
+<!-- ═══════════════════════════  FOOTER  ═══════════════════════════ -->
+<div class="fab" id="fab">
+  <a class="wa" href="https://wa.me/919842768170" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.2-4A8 8 0 1 1 8 18.8z"/></svg></a>
+  <a class="call" href="tel:+919842768170" aria-label="Call us"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></a>
+</div>
+
+<footer class="ft" id="footerPage">
+  <div class="ft-wrap ft-grid">
+    <section class="ft-about" aria-labelledby="ft-about-h">
+      <h2 id="ft-about-h">About Us</h2>
+      <p>ResNova Academic Press is committed to publishing high-quality academic and scholarly works across all major disciplines. We aim to support researchers, authors, and educators by offering trusted publication services and global research visibility.</p>
+      <div class="ft-social"><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8z"/></svg></a><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Follow us on X (Twitter)"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 4l7.2 9.6L4.4 20H6l5.9-5.4L16.4 20H20l-7.6-10.1L18.8 4h-1.6l-5.4 5-3.7-5z"/></svg></a><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Connect with us on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 9v10M5 5v.01M10 19V9m0 4c0-2.2 1.5-4 4-4s3.5 1.6 3.5 4v6"/></svg></a><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17 7h.01"/></svg></a><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 20l1.2-4A8 8 0 1 1 8 18.8z"/></svg></a></div>
+    </section>
+    <nav aria-labelledby="ft-j-h"><h2 id="ft-j-h">Journals</h2><ul class="ft-list"><li><a href="https://james.brpublications.com/index.php/James/index" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg><span>JAMES</span></a></li><li><a href="https://james.brpublications.com/index.php/James/index" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg><span>JNRI</span></a></li></ul></nav>
+    <nav aria-labelledby="ft-q-h"><h2 id="ft-q-h">Quick Links</h2><ul class="ft-list"><li><a href="https://conference.resnovaacademicpress.com" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg><span>Conferences</span></a></li><li><a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg><span>Book Chapter</span></a></li><li><a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg><span>Books</span></a></li></ul></nav>
+    <nav aria-labelledby="ft-w-h"><h2 id="ft-w-h">Work With Us</h2><ul class="ft-list"><li><a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg><span>Contribute a Book Chapter</span></a></li><li><a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg><span>Publish Your Text Book</span></a></li><li><a href="#" data-form="recruitment-form" data-preset="editor"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg><span>Join as a Book Editor</span></a></li><li><a href="#" data-form="recruitment-form" data-preset="reviewer"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"/></svg><span>Join as a Reviewer</span></a></li></ul></nav>
+    <section aria-labelledby="ft-c-h"><h2 id="ft-c-h">Contact Us</h2>
+      <ul class="ft-contact">
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>ResNova Academic Press<br>6/328-2, Maruthi Nagar,<br>Trichy Road, Namakkal-637001,<br>Tamilnadu, India</span></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><a href="tel:+919842768170">+91 98427 68170</a></li>
+        <li><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:info@resnovaacademicpress.com">info@resnovaacademicpress.com</a></li>
+      </ul>
+    </section>
+  </div>
+  <p class="ft-copy">Copyright &copy; <span id="ftYear">2026</span> ResNova Academic Press. All Rights Reserved.</p>
+</footer>
+
+<script src="js/router.js"></script>
+<script src="js/forms.js"></script>
+<script src="js/book-details.js"></script>
+<script src="js/book-chapters.js"></script>
+<script src="js/chapter-detail.js"></script>
+<script src="js/author-detail.js"></script>
+<script src="js/home.js"></script>
+<script src="js/contact.js"></script>
+<script>
+  // Nav hamburger
+  (function () {
+    var btn = document.getElementById('menuBtn');
+    var nav = document.getElementById('nav');
+    if (btn && nav) {
+      btn.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+        btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+    }
+    var dds = document.querySelectorAll('.has-dd');
+    function closeAll(except) {
+      dds.forEach(function (d) {
+        if (d !== except) { d.classList.remove('open'); d.firstElementChild.setAttribute('aria-expanded', 'false'); }
+      });
+    }
+    dds.forEach(function (d) {
+      var toggle = d.firstElementChild;
+      toggle.addEventListener('click', function (e) {
+        if (toggle.getAttribute('href') !== '#' && window.innerWidth > 860) return;
+        e.preventDefault();
+        var opening = !d.classList.contains('open');
+        closeAll(d);
+        d.classList.toggle('open', opening);
+        toggle.setAttribute('aria-expanded', String(opening));
+      });
+    });
+    document.addEventListener('click', function (e) { if (!e.target.closest('.has-dd')) closeAll(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeAll(); });
+
+    // Footer year + FAB
+    var yr = document.getElementById('ftYear');
+    if (yr) yr.textContent = new Date().getFullYear();
+    var fab = document.getElementById('fab');
+    var footer = document.getElementById('footerPage');
+    if (fab && footer && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        fab.classList.toggle('hide', entries[0].isIntersecting);
+      }).observe(footer);
+    }
+  })();
+</script>
+</body>
+</html>

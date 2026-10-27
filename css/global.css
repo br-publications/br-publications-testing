@@ -1,0 +1,41 @@
+/* LAYER 1: PALETTE */
+:root{
+  --palette-ivory:#FFFFF0; --palette-warm:#EAE6DE; --palette-warm-border:#D6D0C4;
+  --palette-navy:#0A2540; --palette-navy-muted:#5B6B7F; --palette-coral:#EF8557;
+  --palette-editorial:#226192; --palette-cyan:#A7EBF2; --palette-teal:#54ACBF;
+  --palette-night-900:#011C40; --palette-night-700:#023859; --palette-night-500:#1D4468; --palette-night-muted:#A9B8C9;
+}
+/* LAYER 2: TOKENS (light) */
+:root{
+  --color-bg:var(--palette-ivory); --color-surface:var(--palette-warm); --color-border:var(--palette-warm-border);
+  --color-text:var(--palette-navy); --color-text-muted:var(--palette-navy-muted);
+  --color-text-on-primary:var(--palette-navy);
+  --color-primary:var(--palette-coral); --color-primary-hover:#E5733F;
+  /* Header is always dark, in both themes */
+  --header-bg:var(--palette-navy); --header-text:var(--palette-ivory);
+  --header-pill-bg:var(--palette-cyan); --header-pill-text:var(--palette-navy);
+  --header-ring:var(--palette-cyan); --header-hover:var(--palette-cyan);
+  --font-heading:"Montserrat","Helvetica Neue",Arial,sans-serif;
+  --font-body:"Open Sans","Helvetica Neue",Verdana,sans-serif;
+  --fs-xs:.8125rem; --fs-sm:.875rem;
+  --fs-base:clamp(1rem,.96rem + .2vw,1.0625rem);
+  --fs-h1:clamp(2rem,1.7rem + 1.5vw,2.5rem);
+  --fs-h3:clamp(1.375rem,1.28rem + .5vw,1.625rem);
+  --fw-semibold:600; --fw-bold:700; --lh-tight:1.2; --lh-ui:1.4; --ls-heading:-.01em;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --color-bg:var(--palette-night-900); --color-surface:var(--palette-night-700); --color-border:var(--palette-night-500);
+    --color-text:var(--palette-ivory); --color-text-muted:var(--palette-night-muted);
+  }
+}
+:root[data-theme="dark"]{
+  --color-bg:var(--palette-night-900); --color-surface:var(--palette-night-700); --color-border:var(--palette-night-500);
+  --color-text:var(--palette-ivory); --color-text-muted:var(--palette-night-muted);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%;zoom:.75}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--color-bg);color:var(--color-text);font-family:var(--font-body);font-size:var(--fs-base);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--palette-cyan);outline-offset:3px;border-radius:6px}
